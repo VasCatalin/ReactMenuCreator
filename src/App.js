@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header buildStarted={buildStarted} stopBuild={stopBuild} />
+      <Header buildStarted={buildStarted} stopBuild={stopBuild} startBuild={startBuild} />
 
       {!buildStarted && (
         <div className="product-tiles mt-5 row pt-5 pt-lg-0">

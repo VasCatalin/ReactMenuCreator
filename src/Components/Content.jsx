@@ -25,7 +25,7 @@ const Content = ({ activeItem, startAnimation }) => {
             user-friendly interface makes it easy to craft the ideal menu for
             any occasion.
           </p>
-          <a href="./">Start Build</a>
+          {/* <a href="./">Start Build</a> */}
         </div>
       )}
 

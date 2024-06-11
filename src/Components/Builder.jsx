@@ -219,7 +219,7 @@ function Builder() {
     setaddStarted(false);
     setIsEditing(false);
 
-    notification("Delete!", "The element has been deleted.", "blue");
+    notification("Succes!", "The element has been deleted.", "green");
   };
 
   //   EDIT ITEM START
@@ -730,7 +730,7 @@ function Builder() {
             <option value="line">Category</option>
           </select>
 
-          <button className="add-item-controls mb-3" onClick={addNewItem}>
+          <button className="add-item-controls mb-3 col-6" onClick={addNewItem}>
             ADD
           </button>
         </div>

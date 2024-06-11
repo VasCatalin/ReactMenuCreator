@@ -23,3 +23,7 @@
   flex-direction: column;
   gap: 30px;
 }
+
+.product-tiles {
+  margin-bottom: 60px;
+}
