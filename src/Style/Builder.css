@@ -90,11 +90,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 
   font-size: 20px;
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   right: -45px;
   width: 150px;
   display: none;
@@ -223,7 +223,7 @@
   position: absolute;
   width: 150px;
   top: -15px;
-  right: 30px;
+  right: 20px;
   display: none;
 }
 
@@ -354,6 +354,15 @@
 }
 
 @media screen and (min-width: 601px) and (max-width: 770px) {
+  .controls {
+    top: -130px;
+  }
+  
+  .menu-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
   .menu-content h2 {
     width: 250px;
   }
@@ -373,7 +382,7 @@
   }
 
   .menu-line .controls {
-    top: -55px;
+    top: -60px;
   }
 
   .line select {
@@ -381,7 +390,7 @@
   }
 
   .menu-details .controls {
-    top: -150px;
+    top: -130px;
     right: -40px;
   }
 }

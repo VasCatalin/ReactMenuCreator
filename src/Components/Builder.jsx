@@ -11,6 +11,8 @@ import {
   faChampagneGlasses,
   faSquareCheck,
   faXmark,
+  faCircleDown,
+  faCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import debounce from "lodash.debounce";
 
@@ -147,13 +149,22 @@ function Builder() {
   const [hoveredID, sethoveredID] = useState(null);
   const [fadeOut, setfadeOut] = useState(null);
 
-  const updateItemId = (newId) => {
+  const updateItemId = (newId, type) => {
     return () => {
       setfadeOut(newId);
       const updatedItems = [...menuItems];
-      updatedItems[hoveredID - 1].id = newId;
-      updatedItems[hoveredID - 1].changed = true;
 
+      if (maxWidth < 697) {
+        if (type === 'up') {
+          updatedItems[newId - 1].id = newId - 1;
+        } else {
+          updatedItems[newId - 1].id = newId + 1;
+        }
+        updatedItems[newId - 1].changed = true;
+      } else {
+        updatedItems[hoveredID - 1].id = newId;
+        updatedItems[hoveredID - 1].changed = true;
+      }
       const assignedIds = new Set(
         updatedItems.filter((item) => item.changed).map((item) => item.id)
       );
@@ -189,10 +200,15 @@ function Builder() {
 
   menuItems.sort((a, b) => a.id - b.id);
 
-  let handleDragStart = (e, item) => {
+  const handleDragStart = (e, item) => {
     sethoveredID(item);
-    console.log(hoveredID);
   };
+
+  useEffect(() => {
+    if (hoveredID !== null) {
+      console.log(hoveredID);
+    }
+  }, [hoveredID]);
 
   const [isOver, setIsOver] = useState(false);
   const [toDrop, setToDrop] = useState(null);
@@ -569,9 +585,33 @@ function Builder() {
                   className="controls"
                   style={{ display: item.edit ? "flex" : "" }}
                 >
-                  <span rel="tooltip" title="Move">
-                    <FontAwesomeIcon icon={faUpDownLeftRight} />
-                  </span>
+                  {maxWidth < 697 && !isEditing ? (
+                    <>
+                      {item.id !== 1 ? (
+                        <span
+                          rel="tooltip"
+                          title="MoveUp"
+                          onClick={updateItemId(item.id, "up")}
+                        >
+                          <FontAwesomeIcon icon={faCircleUp} />
+                        </span>
+                      ) : null}
+
+                      {item.id !== menuItems.length ? (
+                        <span
+                          rel="tooltip"
+                          title="MoveDown"
+                          onClick={updateItemId(item.id, "down")}
+                        >
+                          <FontAwesomeIcon icon={faCircleDown} />
+                        </span>
+                      ) : null}
+                    </>
+                  ) : !isEditing ? (
+                    <span rel="tooltip" title="Move">
+                      <FontAwesomeIcon icon={faUpDownLeftRight} />
+                    </span>
+                  ) : null}
 
                   {item.edit === true ? (
                     <span
@@ -670,9 +710,33 @@ function Builder() {
                 className="controls"
                 style={{ display: item.edit ? "flex" : "" }}
               >
-                <span rel="tooltip" title="Move">
-                  <FontAwesomeIcon icon={faUpDownLeftRight} />
-                </span>
+                {maxWidth < 697 && !isEditing ? (
+                  <>
+                    {item.id !== 1 ? (
+                      <span
+                        rel="tooltip"
+                        title="MoveUp"
+                        onClick={updateItemId(item.id, "up")}
+                      >
+                        <FontAwesomeIcon icon={faCircleUp} />
+                      </span>
+                    ) : null}
+
+                    {item.id !== menuItems.length ? (
+                        <span
+                          rel="tooltip"
+                          title="MoveDown"
+                          onClick={updateItemId(item.id, "down")}
+                        >
+                          <FontAwesomeIcon icon={faCircleDown} />
+                        </span>
+                      ) : null}
+                  </>
+                ) : !isEditing ? (
+                  <span rel="tooltip" title="Move">
+                    <FontAwesomeIcon icon={faUpDownLeftRight} />
+                  </span>
+                ) : null}
 
                 {item.edit === true ? (
                   <span

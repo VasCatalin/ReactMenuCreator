@@ -26,6 +26,8 @@ const Content = ({ activeItem, startAnimation }) => {
             any occasion.
           </p>
           {/* <a href="./">Start Build</a> */}
+          <img className="d-md-none content-drink-img" src={`${process.env.PUBLIC_URL}/img/Drink-1.png`} alt="" />
+
         </div>
       )}
 
