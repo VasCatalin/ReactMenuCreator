@@ -94,7 +94,6 @@ function Builder() {
   
 
   const exportPDF = () => {
-    console.log(addStarted);
     if (!isEditing && !addStarted) {
       const container = document.getElementById("a4-content");
       container.style.height = "1850px";
@@ -114,7 +113,7 @@ function Builder() {
 
     setTimeout(() => {
         window.location.href = './';
-      }, 100);
+      }, 1000);
   
   };
 
