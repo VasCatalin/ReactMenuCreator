@@ -1,0 +1,48 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  grid-row: 5 / span 1;
+
+  background: var(--secondary);
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 30px;
+}
+
+.footer .socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--black);
+  text-decoration: none;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  background: var(--white);
+  transition: 0.3s;
+}
+
+.footer a:hover {
+  background: var(--primary);
+  color: var(--black);
+}
+
+.footer h6 {
+  color: var(--primary);
+}

@@ -1,0 +1,317 @@
+.a4-size {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: start;
+
+  /* animation: fade-in 0.5s linear forwards; */
+}
+
+
+.menu-content {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  position: relative;
+}
+
+.menu-line {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.menu-img {
+  width: 150px;
+}
+
+.menu-details {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+
+.name {
+  padding-top: 10px;
+  font-size: 70px;
+}
+
+.rerstaurant {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.description {
+  text-align: start;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0;
+}
+
+.alergeni {
+  text-align: start;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 2px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.menu-content.hovered,
+.menu-content.to-drop,
+.menu-line.hovered,
+.menu-line.to-drop {
+  box-shadow: 0 0 15px var(--black);
+  z-index: 1;
+}
+
+.menu-content.to-drop,
+.menu-line.to-drop {
+  background: var(--primary);
+}
+
+.menu-details .controls {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  font-size: 20px;
+  position: absolute;
+  bottom: 25px;
+  right: -45px;
+  width: 150px;
+  display: none;
+
+  transition: 0.3s;
+}
+
+.hovered {
+  transition: 0.5s;
+}
+
+.menu-content.hovered .controls {
+  display: flex;
+}
+
+.menu-content.hovered .controls span {
+  transition: 0.3s;
+}
+
+.menu-content.hovered .controls span:hover {
+  color: var(--primary);
+  scale: 1.2;
+}
+
+.menu-content.fade-out {
+  animation: fadeOut 1s linear forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    background: var(--primary);
+    box-shadow: 0 0 15px var(--black);
+  }
+
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 transparent;
+  }
+}
+
+.line {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.line span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 30px;
+  left: 100px;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  top: calc(50% - 25px);
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--primary);
+  z-index: 1;
+}
+
+.line h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5px 20px 5px 30px;
+  position: absolute;
+  left: 130px;
+  top: calc(50% - 20px);
+  background: var(--primary);
+  border-radius: 0 50px 50px 0;
+  color: var(--white);
+
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.line::before {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(246, 134, 53, 1) 24%,
+    rgba(246, 134, 53, 0) 85%
+  );
+  content: "";
+
+  left: 0;
+  top: 50%;
+}
+
+.edit-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-img img {
+  width: 134px;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.menu-line {
+  position: relative;
+}
+
+.menu-line .controls {
+  position: absolute;
+  width: 150px;
+  top: -15px;
+  right: 30px;
+  display: none;
+}
+
+.menu-line.hovered .controls {
+  display: flex;
+}
+
+.menu-line .controls span {
+  transition: 0.3s;
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  color: var(--white);
+}
+
+.menu-line.hovered .controls span {
+  transition: 0.3s;
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.menu-line.hovered .controls span:hover {
+  background: var(--white);
+  color: var(--black);
+  scale: 1.2;
+}
+
+.line select {
+  width: 200px;
+  position: absolute;
+
+  right: 0;
+  top: -60px;
+}
+
+.export {
+  margin-bottom: 70px;
+}
+
+.export {
+  text-decoration: none;
+  color: var(--white);
+  background: var(--primary);
+  padding: 10px 25px;
+  border: 1px solid var(--primary);
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.export:hover {
+  color: var(--primary);
+  background: var(--white);
+}
+
+@media screen and (max-width: 600px) {
+  .restaurant {
+    margin-bottom: 30px;
+  }
+
+  .menu-content {
+    flex-direction: column;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .menu-line .controls {
+    top: -55px;
+  }
+
+  .line select {
+    top: -100px;
+  }
+
+  .menu-details .controls {
+    top: -150px;
+    right: -40px;
+  }
+}

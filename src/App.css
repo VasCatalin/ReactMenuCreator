@@ -1,0 +1,25 @@
+:root {
+  --primary: #ff8512;
+  --secondary: #292727;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+.container {
+  text-align: center;
+  display: grid;
+  grid-template-rows: 60px 1fr 1fr 200px;
+  grid-template-rows: 1fr;
+  
+  position: relative;
+}
+
+.builder {
+  grid-row: 2/ span 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}

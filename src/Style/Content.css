@@ -1,0 +1,250 @@
+.content {
+    width: 60%;
+    height: 450px;
+    /* background: rebeccapurple; */
+
+    display: flex;
+    justify-self: end;
+    z-index: 2;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.home h1 {
+    font-weight: 700;
+}
+
+.home p {
+    padding-left: 50px;
+}
+
+.home a, .contact .controls a {
+    text-decoration: none;
+    color: var(--white);
+    background: var(--primary);
+    padding: 10px 25px;
+    border: 1px solid var(--primary);
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.home a:hover, .contact a:hover {
+    color: var(--primary);
+    background: var(--white);
+}
+
+.home.animate-in, .contact.animate-in {
+    animation: home-in 0.25s linear forwards;
+}
+
+@keyframes home-in {
+    0% {
+        transform: translateX(500px);
+        filter: blur(10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.home.animate-out, .contact.animate-out {
+    animation: home-out 0.25s linear forwards;
+}
+
+@keyframes home-out {
+    0% {
+        transform: translateX(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(500px);
+        filter: blur(10px);
+        opacity: 0;
+    }
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;;
+}
+
+.contact .form input {
+    width: 800px;
+}
+
+.contact textarea {
+    width: 800px;
+    max-height: 200px;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact .contact-options {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact .contact-options a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+    text-decoration: none;
+    color: var(--black);
+    font-size: 18px;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.contact .contact-options a:hover {
+    color: var(--primary);
+}
+
+@media screen and (max-width: 1400px) {
+
+    .contact .form input {
+        width: 700px;
+
+    }
+    
+    .contact textarea {
+        width: 700px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .content {
+        height: 400px;
+    }
+
+    .contact h1 {
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+
+    .contact .form input {
+        width: 550px;
+
+    }
+    
+    .contact textarea {
+        width: 550px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .content {
+        height: 270px;
+        position: relative;
+    }
+
+    .contact h1 {
+        display: none;
+    }
+
+    .contact .form input {
+        width: 420px;
+
+    }
+    
+    .contact textarea {
+        width: 420px;
+    }
+
+    .contact .controls {
+        position: absolute;
+        bottom: -65px;
+        left: -200px;
+        width: 600px;
+    }
+
+    .contact .contact-options {
+        position: absolute;
+        bottom: -80px;
+        left: -200px;
+        width: 600px;
+    }
+
+    .home {
+        gap: 5px;
+    }
+    
+    .home h1 {
+        font-size: 22px;
+    }
+    
+    .home p {
+        padding-left: 50px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .content {
+        width: 100%;
+        display: block;
+    }
+
+    .contact .form input {
+        width: 320px;
+
+    }
+    
+    .contact textarea {
+        width: 320px;
+    }
+
+    .contact .controls {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        left: 0;
+
+        position: relative;
+        margin-top: -80px;
+    }
+
+    .contact .contact-options {
+        display: none;
+    }
+    
+    .home {
+        margin-top: 180px;
+    }
+
+    .home h1 {
+        padding: 5px 10px;
+        background: var(--white);
+        border-radius: 20px 0 0 20px;
+
+        box-shadow: 0 0 15px var(--black);
+    }
+
+    .home p {
+        display: none;
+    }
+}
