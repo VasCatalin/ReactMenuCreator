@@ -89,7 +89,7 @@ function Builder() {
   useEffect(() => {
     const updatedMenuItems = setMenuItemIDs(menuItems);
     setMenuItems(updatedMenuItems);
-  }, [menuItems]);
+  }, []);
 
   
 
