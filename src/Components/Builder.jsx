@@ -127,19 +127,26 @@ function Builder() {
       container.style.height = "1850px";
       container.style.width = "1300px";
 
-      html2canvas(container).then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF("p", "mm", "a4");
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("download.pdf");
-      });
+      let timer = 0;
+      if (notifications.length > 0) {
+        timer = 2000;
+      }
+
+      setTimeout(() => {
+        html2canvas(container).then((canvas) => {
+          const imgData = canvas.toDataURL("image/png");
+          const pdf = new jsPDF("p", "mm", "a4");
+          const imgProps = pdf.getImageProperties(imgData);
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+          pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+          pdf.save("download.pdf");
+        });
+      }, timer);
 
       setTimeout(() => {
         window.location.href = "./";
-      }, 1500);
+      }, timer + 1500);
     } else {
       notification("Warning!", "You are editing/adding an element.", "#f68635");
     }
@@ -155,7 +162,7 @@ function Builder() {
       const updatedItems = [...menuItems];
 
       if (maxWidth < 697) {
-        if (type === 'up') {
+        if (type === "up") {
           updatedItems[newId - 1].id = newId - 1;
         } else {
           updatedItems[newId - 1].id = newId + 1;
@@ -723,14 +730,14 @@ function Builder() {
                     ) : null}
 
                     {item.id !== menuItems.length ? (
-                        <span
-                          rel="tooltip"
-                          title="MoveDown"
-                          onClick={updateItemId(item.id, "down")}
-                        >
-                          <FontAwesomeIcon icon={faCircleDown} />
-                        </span>
-                      ) : null}
+                      <span
+                        rel="tooltip"
+                        title="MoveDown"
+                        onClick={updateItemId(item.id, "down")}
+                      >
+                        <FontAwesomeIcon icon={faCircleDown} />
+                      </span>
+                    ) : null}
                   </>
                 ) : !isEditing ? (
                   <span rel="tooltip" title="Move">
