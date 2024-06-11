@@ -12,7 +12,7 @@ import {
   faSquareCheck,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
 
 const images = [
   "Food-1",
@@ -55,7 +55,37 @@ function Builder() {
     },
   ]);
 
-//   resize for button START
+  // notifications START
+  const [notifications, setNotifications] = useState([
+  ]);
+
+  const [currentTime, setCurrentTime] = useState(new Date().getTime());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().getTime());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const notification = (title, text, color,) => {
+    const current = new Date().getTime();
+    const newItem = {
+      title: title,
+      text: text,
+      color: color,
+      timeStart: current,
+      timeEnd: current + 3000,
+    };
+
+    setNotifications((notifications) => [...notifications, newItem]);
+
+  };
+
+  // notifications END
+
+  //   resize for button START
   const a4SizeRef = useRef(null);
   const [maxHeight, setMaxHeight] = useState(null);
   const [maxWidth, setMaxWidth] = useState(0);
@@ -72,12 +102,12 @@ function Builder() {
       }
     }, 100);
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-//   resize for button END
+  //   resize for button END
 
   const setMenuItemIDs = (items) => {
     return items.map((item, index) => ({
@@ -91,14 +121,11 @@ function Builder() {
     setMenuItems(updatedMenuItems);
   }, []);
 
-  
-
   const exportPDF = () => {
     if (!isEditing && !addStarted) {
       const container = document.getElementById("a4-content");
       container.style.height = "1850px";
       container.style.width = "1300px";
-      
 
       html2canvas(container).then((canvas) => {
         const imgData = canvas.toDataURL("image/png");
@@ -112,9 +139,8 @@ function Builder() {
     }
 
     setTimeout(() => {
-        window.location.href = './';
-      }, 1000);
-  
+      window.location.href = "./";
+    }, 1000);
   };
 
   const [isHovered, setIsHovered] = useState(null);
@@ -331,11 +357,9 @@ function Builder() {
     setisProductitem(event.target.value);
   };
 
-  
-
   const addNewItem = () => {
     const height = a4SizeRef.current.clientHeight;
-  const width = a4SizeRef.current.clientWidth;
+    const width = a4SizeRef.current.clientWidth;
     setMaxHeight(height);
     setMaxWidth(width);
 
@@ -391,6 +415,20 @@ function Builder() {
     <>
       <div id="a4-content" className="a4-size row p-4" ref={a4SizeRef}>
         <div className="background" style={background}></div>
+        <div className="all-notify col-10 col-md-6 col-lg-4">
+          {notifications.map((item, index) =>
+            currentTime < item.timeEnd ? (
+              <div
+                className="notify notify-in mb-1"
+                key={index}
+                style={{ borderColor: item.color, boxShadow: `0 0 10px ${item.color}` }}
+              >
+                <h1 style={{color: item.color}}>{item.title}</h1>
+                <p>{item.text}</p>
+              </div>
+            ) : null
+          )}
+        </div>
         <h1 className="name">Meniu</h1>
         <h2 className="restaurant">*Restaurant*</h2>
         {menuItems.map((item, index) =>
@@ -434,6 +472,7 @@ function Builder() {
                     }.png`}
                     alt="Plate"
                     className="menu-img"
+                    onClick={() => notification('titlu', 'dfsjk fd f ffada fsdl fdlkfklfaslkflak;fal;faslfsal;h', 'red')}
                   />
                 </div>
               ) : (
@@ -667,7 +706,9 @@ function Builder() {
             Export to PDF
           </button>
         ) : (
-        <h4 className="mb-5">To export, the screen must be larger than 1230 pixels.</h4>
+          <h4 className="mb-5">
+            To export, the screen must be larger than 1230 pixels.
+          </h4>
         )}
       </div>
     </>
