@@ -89,7 +89,9 @@ function Builder() {
   useEffect(() => {
     const updatedMenuItems = setMenuItemIDs(menuItems);
     setMenuItems(updatedMenuItems);
-  }, []);
+  }, [menuItems]);
+
+  
 
   const exportPDF = () => {
     console.log(addStarted);
