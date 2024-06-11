@@ -56,8 +56,7 @@ function Builder() {
   ]);
 
   // notifications START
-  const [notifications, setNotifications] = useState([
-  ]);
+  const [notifications, setNotifications] = useState([]);
 
   const [currentTime, setCurrentTime] = useState(new Date().getTime());
 
@@ -69,7 +68,7 @@ function Builder() {
     return () => clearInterval(interval);
   }, []);
 
-  const notification = (title, text, color,) => {
+  const notification = (title, text, color) => {
     const current = new Date().getTime();
     const newItem = {
       title: title,
@@ -80,7 +79,6 @@ function Builder() {
     };
 
     setNotifications((notifications) => [...notifications, newItem]);
-
   };
 
   // notifications END
@@ -136,11 +134,13 @@ function Builder() {
         pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
         pdf.save("download.pdf");
       });
-    }
 
-    setTimeout(() => {
-      window.location.href = "./";
-    }, 1000);
+      setTimeout(() => {
+        window.location.href = "./";
+      }, 1500);
+    } else {
+      notification("Warning!", "You are editing/adding an element.", "#f68635");
+    }
   };
 
   const [isHovered, setIsHovered] = useState(null);
@@ -218,6 +218,8 @@ function Builder() {
     setChangeItem(false);
     setaddStarted(false);
     setIsEditing(false);
+
+    notification("Delete!", "The element has been deleted.", "blue");
   };
 
   //   EDIT ITEM START
@@ -268,6 +270,12 @@ function Builder() {
       setPrice(price);
       setImg(img);
       setMenuItems(updatedItems);
+    } else {
+      notification(
+        "Warning!",
+        "You are already editing/adding an element.",
+        "#f68635"
+      );
     }
   };
 
@@ -295,6 +303,7 @@ function Builder() {
     setChangeItem(false);
     setIsEditing(false);
     setaddStarted(false);
+    notification("Succes!", "The element has been edited / added.", "green");
   };
 
   const editCategory = (itemId, title) => {
@@ -307,6 +316,12 @@ function Builder() {
 
       setCategory(title);
       setMenuItems(updatedItems);
+    } else {
+      notification(
+        "Warning!",
+        "You are already editing/adding an element.",
+        "#f6863"
+      );
     }
   };
 
@@ -326,6 +341,7 @@ function Builder() {
     setChangeItem(false);
     setIsEditing(false);
     setaddStarted(false);
+    notification("Succes!", "The element has been edited / added.", "green");
   };
 
   const cancelEdit = (itemId) => {
@@ -385,8 +401,13 @@ function Builder() {
         );
         setAlergeni("Ex: oat, corn");
         setPrice("10€");
+        // notification('Succes!', 'Element successfully added.', 'green');
       } else {
-        console.log(`inaltime ${height}`);
+        notification(
+          "Warning!",
+          "You have reached the maximum limit of elements.",
+          "#f68635"
+        );
       }
     } else if (!addStarted && !isEditing && isProduct === "line") {
       if (maxHeight < 1700) {
@@ -400,9 +421,20 @@ function Builder() {
 
         setMenuItems([...menuItems, newItem]);
         setCategory("Drinks");
+        // notification('Succes!', 'Element successfully added.', 'green');
       } else {
-        console.log(`inaltime ${height}`);
+        notification(
+          "Warning!",
+          "You have reached the maximum limit of elements.",
+          "#f68635"
+        );
       }
+    } else {
+      notification(
+        "Warning!",
+        "You are already editing/adding an element.",
+        "#f68635"
+      );
     }
   };
   //   add item END
@@ -421,9 +453,12 @@ function Builder() {
               <div
                 className="notify notify-in mb-1"
                 key={index}
-                style={{ borderColor: item.color, boxShadow: `0 0 10px ${item.color}` }}
+                style={{
+                  borderColor: item.color,
+                  boxShadow: `0 0 10px ${item.color}`,
+                }}
               >
-                <h1 style={{color: item.color}}>{item.title}</h1>
+                <h1 style={{ color: item.color }}>{item.title}</h1>
                 <p>{item.text}</p>
               </div>
             ) : null
@@ -472,7 +507,6 @@ function Builder() {
                     }.png`}
                     alt="Plate"
                     className="menu-img"
-                    onClick={() => notification('titlu', 'dfsjk fd f ffada fsdl fdlkfklfaslkflak;fal;faslfsal;h', 'red')}
                   />
                 </div>
               ) : (
