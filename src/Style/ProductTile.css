@@ -74,6 +74,7 @@
 @media screen and (max-width: 1400px) {
   .product-tile img {
     width: 150px;
+    top: 45%;
   }
 
   .product-tile button {
@@ -84,6 +85,7 @@
 @media screen and (max-width: 1200px) {
   .product-tile img {
     width: 140px;
+    top: 50%;
   }
 
   .product-tile button {

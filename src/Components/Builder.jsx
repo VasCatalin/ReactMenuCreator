@@ -228,7 +228,7 @@ function Builder() {
 
   const deleteItem = (itemId) => {
     const height = a4SizeRef.current.clientHeight;
-    setMaxHeight(height - 50);
+    setMaxHeight(height - 100);
     const updatedItems = menuItems.filter((item) => item.id !== itemId);
     setMenuItems(updatedItems);
     setChangeItem(false);
